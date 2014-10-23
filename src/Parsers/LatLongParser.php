@@ -32,7 +32,7 @@ use ValueParsers\StringValueParser;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class GeoCoordinateParser extends StringValueParser {
+class LatLongParser extends StringValueParser {
 
 	const TYPE_FLOAT = 'float';
 	const TYPE_DMS = 'dms';

@@ -13,7 +13,7 @@ use ValueParsers\ParserOptions;
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  * @author H. Snater < mediawiki@snater.com >
  */
-class DdCoordinateParser extends GeoCoordinateParserBase {
+class DdCoordinateParser extends LatLongParserBase {
 
 	/**
 	 * The symbol representing degrees.
@@ -33,7 +33,7 @@ class DdCoordinateParser extends GeoCoordinateParserBase {
 	}
 
 	/**
-	 * @see GeoCoordinateParserBase::getParsedCoordinate
+	 * @see LatLongParserBase::getParsedCoordinate
 	 */
 	protected function getParsedCoordinate( $coordinateSegment ) {
 		$coordinateSegment = $this->resolveDirection( $coordinateSegment );
@@ -41,7 +41,7 @@ class DdCoordinateParser extends GeoCoordinateParserBase {
 	}
 
 	/**
-	 * @see GeoCoordinateParserBase::areValidCoordinates
+	 * @see LatLongParserBase::areValidCoordinates
 	 */
 	protected function areValidCoordinates( $normalizedCoordinateSegments ) {
 		// TODO: Implement localized decimal separator.
@@ -92,7 +92,7 @@ class DdCoordinateParser extends GeoCoordinateParserBase {
 	}
 
 	/**
-	 * @see GeoCoordinateParserBase::stringParse
+	 * @see LatLongParserBase::stringParse
 	 */
 	protected function stringParse( $value ) {
 		return parent::stringParse( $this->getNormalizedNotation( $value ) );
@@ -120,7 +120,7 @@ class DdCoordinateParser extends GeoCoordinateParserBase {
 	 * Returns a string with whitespace, control characters and characters with ASCII values above
 	 * 126 removed.
 	 *
-	 * @see GeoCoordinateParserBase::removeInvalidChars
+	 * @see LatLongParserBase::removeInvalidChars
 	 */
 	protected function removeInvalidChars( $string ) {
 		return str_replace( ' ', '', parent::removeInvalidChars( $string ) );
@@ -142,7 +142,7 @@ class DdCoordinateParser extends GeoCoordinateParserBase {
 	}
 
 	/**
-	 * @see GeoCoordinateParserBase::splitString
+	 * @see LatLongParserBase::splitString
 	 */
 	protected function splitString( $normalizedCoordinateString ) {
 		$separator = $this->getOption( self::OPT_SEPARATOR_SYMBOL );

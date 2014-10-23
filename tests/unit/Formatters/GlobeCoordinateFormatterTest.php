@@ -2,8 +2,8 @@
 
 namespace Tests\DataValues\Geo\Formatters;
 
-use DataValues\Geo\Formatters\GeoCoordinateFormatter;
 use DataValues\Geo\Formatters\GlobeCoordinateFormatter;
+use DataValues\Geo\Formatters\LatLongFormatter;
 use DataValues\Geo\Parsers\GlobeCoordinateParser;
 use DataValues\Geo\Values\GlobeCoordinateValue;
 use DataValues\Geo\Values\LatLongValue;
@@ -71,17 +71,17 @@ class GlobeCoordinateFormatterTest extends ValueFormatterTestBase {
 		$argLists = array();
 
 		$tests = array(
-			GeoCoordinateFormatter::TYPE_FLOAT => $floats,
-			GeoCoordinateFormatter::TYPE_DD => $decimalDegrees,
-			GeoCoordinateFormatter::TYPE_DMS => $dmsCoordinates,
-			GeoCoordinateFormatter::TYPE_DM => $dmCoordinates,
+			LatLongFormatter::TYPE_FLOAT => $floats,
+			LatLongFormatter::TYPE_DD => $decimalDegrees,
+			LatLongFormatter::TYPE_DMS => $dmsCoordinates,
+			LatLongFormatter::TYPE_DM => $dmCoordinates,
 		);
 
 		$i = 0;
 		foreach ( $tests as $format => $coords ) {
 			foreach ( $coords as $expectedOutput => $arguments ) {
 				$options = new FormatterOptions();
-				$options->setOption( GeoCoordinateFormatter::OPT_FORMAT, $format );
+				$options->setOption( LatLongFormatter::OPT_FORMAT, $format );
 
 				$input = new GlobeCoordinateValue(
 					new LatLongValue( $arguments[0], $arguments[1] ),
@@ -111,7 +111,7 @@ class GlobeCoordinateFormatterTest extends ValueFormatterTestBase {
 
 	public function testFormatWithInvalidPrecision_fallsBackToDefaultPrecision() {
 		$options = new FormatterOptions();
-		$options->setOption( GeoCoordinateFormatter::OPT_PRECISION, 0 );
+		$options->setOption( LatLongFormatter::OPT_PRECISION, 0 );
 		$formatter = new GlobeCoordinateFormatter( $options );
 
 		$formatted = $formatter->format( new GlobeCoordinateValue( new LatLongValue( 1.2, 3.4 ), null ) );

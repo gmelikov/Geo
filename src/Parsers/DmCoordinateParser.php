@@ -36,7 +36,7 @@ class DmCoordinateParser extends DdCoordinateParser {
 	}
 
 	/**
-	 * @see GeoCoordinateParserBase::areValidCoordinates
+	 * @see LatLongParserBase::areValidCoordinates
 	 */
 	protected function areValidCoordinates( $normalizedCoordinateSegments ) {
 		// At least one coordinate segment needs to have minutes specified.
@@ -128,7 +128,7 @@ class DmCoordinateParser extends DdCoordinateParser {
 		$degreeSymbol = $this->getOption( self::OPT_DEGREE_SYMBOL );
 		$exploded = explode( $degreeSymbol, $coordinateSegment );
 
-		if( count( $exploded ) !== 2 ) {
+		if ( count( $exploded ) !== 2 ) {
 			throw new ParseException(
 				'Unable to explode coordinate segment by degree symbol (' . $degreeSymbol . ')',
 				$coordinateSegment,

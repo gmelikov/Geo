@@ -6,16 +6,16 @@ use DataValues\Geo\Values\LatLongValue;
 use ValueParsers\Test\StringValueParserTest;
 
 /**
- * @covers DataValues\Geo\Parsers\GeoCoordinateParser
+ * @covers DataValues\Geo\Parsers\LatLongParser
  *
  * @group ValueParsers
  * @group DataValueExtensions
- * @group GeoCoordinateParserTest
+ * @group LatLongParserTest
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class GeoCoordinateParserTest extends StringValueParserTest {
+class LatLongParserTest extends StringValueParserTest {
 
 	/**
 	 * @see ValueParserTestBase::validInputProvider
@@ -116,7 +116,7 @@ class GeoCoordinateParserTest extends StringValueParserTest {
 	 * @return string
 	 */
 	protected function getParserClass() {
-		return 'DataValues\Geo\Parsers\GeoCoordinateParser';
+		return 'DataValues\Geo\Parsers\LatLongParser';
 	}
 
 }

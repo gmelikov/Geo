@@ -10,9 +10,9 @@ use ValueFormatters\ValueFormatterBase;
  * Geographical coordinates formatter.
  * Formats GlobeCoordinateValue objects.
  *
- * Formatting of latitude and longitude is done via GeoCoordinateFormatter.
+ * Formatting of latitude and longitude is done via LatLongFormatter.
  *
- * For now this is a trivial implementation that only forwards to GeoCoordinateFormatter.
+ * For now this is a trivial implementation that only forwards to LatLongFormatter.
  * TODO: add formatting of globe and precision
  *
  * @since 0.1
@@ -37,7 +37,7 @@ class GlobeCoordinateFormatter extends ValueFormatterBase {
 			throw new InvalidArgumentException( 'The GlobeCoordinateFormatter can only format instances of GlobeCoordinateValue.' );
 		}
 
-		$formatter = new GeoCoordinateFormatter( $this->options );
+		$formatter = new LatLongFormatter( $this->options );
 
 		return $formatter->formatLatLongValue( $value->getLatLong(), $value->getPrecision() );
 	}

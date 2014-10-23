@@ -13,7 +13,7 @@ use ValueParsers\Test\StringValueParserTest;
  *
  * @group ValueParsers
  * @group DataValueExtensions
- * @group GeoCoordinateParserTest
+ * @group GlobeCoordinateParserTest
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >

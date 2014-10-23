@@ -36,7 +36,7 @@ class DmsCoordinateParser extends DmCoordinateParser {
 	}
 
 	/**
-	 * @see GeoCoordinateParserBase::areValidCoordinates
+	 * @see LatLongParserBase::areValidCoordinates
 	 */
 	protected function areValidCoordinates( $normalizedCoordinateSegments ) {
 		// At least one coordinate segment needs to have seconds specified (which additionally

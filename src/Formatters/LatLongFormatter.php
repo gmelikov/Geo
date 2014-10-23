@@ -27,7 +27,7 @@ use ValueFormatters\ValueFormatterBase;
  * @author Adam Shorland
  * @author Thiemo Mättig
  */
-class GeoCoordinateFormatter extends ValueFormatterBase {
+class LatLongFormatter extends ValueFormatterBase {
 
 	const TYPE_FLOAT = 'float';
 	const TYPE_DMS = 'dms';

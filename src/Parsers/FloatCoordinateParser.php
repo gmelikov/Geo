@@ -11,19 +11,19 @@ use ValueParsers\ParseException;
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  * @author H. Snater < mediawiki@snater.com >
  */
-class FloatCoordinateParser extends GeoCoordinateParserBase {
+class FloatCoordinateParser extends LatLongParserBase {
 
 	const FORMAT_NAME = 'float-coordinate';
 
 	/**
-	 * @see GeoCoordinateParserBase::getParsedCoordinate
+	 * @see LatLongParserBase::getParsedCoordinate
 	 */
 	protected function getParsedCoordinate( $coordinateSegment ) {
 		return (float)$this->resolveDirection( str_replace( ' ', '', $coordinateSegment ) );
 	}
 
 	/**
-	 * @see GeoCoordinateParserBase::areValidCoordinates
+	 * @see LatLongParserBase::areValidCoordinates
 	 */
 	protected function areValidCoordinates( $normalizedCoordinateSegments ) {
 		// TODO: Implement localized decimal separator.
@@ -72,7 +72,7 @@ class FloatCoordinateParser extends GeoCoordinateParserBase {
 	}
 
 	/**
-	 * @see GeoCoordinateParserBase::splitString
+	 * @see LatLongParserBase::splitString
 	 */
 	protected function splitString( $normalizedCoordinateString ) {
 		$separator = $this->getOption( self::OPT_SEPARATOR_SYMBOL );
