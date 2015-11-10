@@ -12,6 +12,7 @@ use DataValues\IllegalValueException;
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
+ * @author Thiemo Mättig
  */
 class GlobeCoordinateValue extends DataValueObject {
 
@@ -43,28 +44,35 @@ class GlobeCoordinateValue extends DataValueObject {
 	 *
 	 * @throws IllegalValueException
 	 */
-	public function __construct( LatLongValue $latLang, $precision, $globe = null ) {
+	public function __construct( LatLongValue $latLang, $precision = null, $globe = null ) {
+		$this->assertIsPrecision( $precision );
+
 		if ( $globe === null ) {
 			$globe = self::GLOBE_EARTH;
+		} elseif ( !is_string( $globe ) || $globe === '' ) {
+			throw new IllegalValueException( '$globe must be a non-empty string or null' );
 		}
-
-		$this->assertIsPrecision( $precision );
-		$this->assertIsGlobe( $globe );
 
 		$this->latLang = $latLang;
 		$this->precision = $precision;
 		$this->globe = $globe;
 	}
 
-	protected function assertIsPrecision( $precision ) {
-		if ( !is_null( $precision ) && !is_float( $precision ) && !is_int( $precision ) ) {
-			throw new IllegalValueException( 'Can only construct GlobeCoordinateValue with a numeric precision or null' );
-		}
-	}
-
-	protected function assertIsGlobe( $globe ) {
-		if ( !is_string( $globe ) ) {
-			throw new IllegalValueException( 'Can only construct GlobeCoordinateValue with a string globe parameter' );
+	/**
+	 * @see LatLongValue::assertIsLatitude
+	 * @see LatLongValue::assertIsLongitude
+	 *
+	 * @param float|int|null $precision
+	 *
+	 * @throws IllegalValueException
+	 */
+	private function assertIsPrecision( $precision ) {
+		if ( $precision !== null ) {
+			if ( !is_float( $precision ) && !is_int( $precision ) ) {
+				throw new IllegalValueException( '$precision must be a float, integer or null' );
+			} elseif ( $precision < -360 || $precision > 360 ) {
+				throw new IllegalValueException( '$precision needs to be between -360 and 360' );
+			}
 		}
 	}
 
